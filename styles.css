@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    position: relative;
+    height: 100vh; /* Full height of viewport */
+    overflow: hidden; /* Prevent scroll bars from appearing */
+}
+
+.background-image {
+    background-image: url('static/graphic-graph.png'); /* Background image */
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    position: absolute; /* Positioning to cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Ensure it's behind other content */
+}
+
+.container {
+    position: relative; /* Ensure container is above the background */
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Dark background with increased opacity for better visibility */
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s;
+    z-index: 1; /* Ensure container is above the background image */
+}
+
+.logo {
+    max-width: 150px; /* Adjust width of logo as necessary */
+    margin-bottom: 20px; /* Space between logo and title */
+    z-index: 1; /* Make sure the logo is above the background */
+    position: relative; /* Ensure proper stacking context */
+}
+
+/* Additional CSS styles for titles, buttons, animations, etc. */
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.upload-label {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #0072ff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.upload-label:hover {
+    background: #005bb5;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.instructions {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: #218838;
+}
+
+.animation-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.animation-box {
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    animation: bounce 1s infinite;
+}
+
+.file-info {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #f0f0f0; /* Adjust color as needed */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 2rem;
+    }
+    .subtitle {
+        font-size: 1rem;
+    }
+    .upload-label, .submit-btn {
+        padding: 10px 20px;
+    }
+}
+

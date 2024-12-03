@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsightGenie</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+            background-image: url('/static/graphic-graph.png'); /* Background image path */
+            background-size: cover; /* Cover entire screen */
+            background-position: center; /* Center the background */
+            background-repeat: no-repeat; /* No repeat */
+            margin: 0; /* Ensure no unwanted margins */
+        }
+        
+        /* Remove any background color or opacity that might be causing the black overlay */
+        .container {
+            background-color: transparent; /* Ensure container has no background color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/static/logo.png" alt="Company Logo" class="logo"> <!-- Path to your logo -->
+        <h1 class="title">Welcome to InsightGenie</h1>
+        <p class="subtitle">Upload your data file for insights!</p>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="file-upload" class="upload-label">
+                <span>📁 Choose Data File</span>
+            </label>
+            <input type="file" id="file-upload" name="file" accept=".xlsx, .xls, .csv" aria-label="Upload Data File" />
+            <label for="columns_as_names">Do the first two columns consist of names?</label><br>
+            <input type="radio" name="columns_as_names" value="yes"> Yes
+            <input type="radio" name="columns_as_names" value="no" checked> No<br><br>
+            <button type="submit" class="submit-btn">Upload</button>
+        </form>
+        <p class="instructions">Drag & drop your file here or click to upload.</p>
+        <p id="file-info" class="file-info">No file chosen</p>
+    </div>
+
+    <script>
+        document.getElementById('file-upload').addEventListener('change', function() {
+            const fileInfo = document.getElementById('file-info');
+            const file = this.files[0];
+
+            if (file) {
+                const fileName = file.name;
+                const fileSize = (file.size / 1024).toFixed(2); // Size in KB
+                fileInfo.textContent = `Selected file: ${fileName} (${fileSize} KB)`;
+            } else {
+                fileInfo.textContent = 'No file chosen';
+            }
+        });
+
+        const container = document.querySelector('.container');
+
+        container.addEventListener('dragover', function(event) {
+            event.preventDefault();
+            this.classList.add('drag-over');
+        });
+
+        container.addEventListener('dragleave', function() {
+            this.classList.remove('drag-over');
+        });
+
+        container.addEventListener('drop', function(event) {
+            event.preventDefault();
+            const files = event.dataTransfer.files;
+            document.getElementById('file-upload').files = files;
+            document.getElementById('file-upload').dispatchEvent(new Event('change'));
+        });
+    </script>
+</body>
+</html>
+
+
+
+
